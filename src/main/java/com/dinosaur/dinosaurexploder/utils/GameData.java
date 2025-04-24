@@ -7,6 +7,9 @@ public class GameData {
     private static int selectedShip = 1; // Default ship
     private static ShipUnlockChecker unlockChecker = new ShipUnlockChecker();
 
+    // Static variable that stores the high score
+    private static int highScore;
+
     // Getter and setter for the selected ship
     public static int getSelectedShip() {
         return selectedShip;
@@ -23,5 +26,11 @@ public class GameData {
         } catch (LockedShipException e) {
             return false;
         }
+    }
+
+    // Getter for the high score
+    public static int getHighScore() {
+        highScore = unlockChecker.getHighScore().getHigh();
+        return highScore;
     }
 }
