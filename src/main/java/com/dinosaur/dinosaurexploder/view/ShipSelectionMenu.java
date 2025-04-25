@@ -80,6 +80,12 @@ public class ShipSelectionMenu extends FXGLMenu {
                 Color.LIME,
                 FontType.MONO, 25);
 
+        //Total coin display
+        var totalCoins = FXGL.getUIFactoryService().newText(
+                languageManager.getTranslation("total coins") + ": " + GameData.getTotalCoins(),
+                Color.LIME,
+                FontType.MONO, 25);
+
         // GridPane for ships
         GridPane shipGrid = new GridPane();
         shipGrid.setAlignment(Pos.CENTER);
@@ -111,7 +117,7 @@ public class ShipSelectionMenu extends FXGLMenu {
         spacer.setOpacity(0);
 
         // Vbox layout
-        VBox layout = new VBox(20, spacer, title, highScore, shipGrid, backButton);
+        VBox layout = new VBox(20, spacer, title, highScore, totalCoins, shipGrid, backButton);
         layout.setAlignment(Pos.CENTER);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(50); // 50px spacing between nodes
