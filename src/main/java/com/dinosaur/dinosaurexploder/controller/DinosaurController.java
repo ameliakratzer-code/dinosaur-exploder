@@ -7,6 +7,7 @@ import com.dinosaur.dinosaurexploder.model.*;
 import com.dinosaur.dinosaurexploder.utils.SettingsProvider;
 import com.dinosaur.dinosaurexploder.view.DinosaurGUI;
 import com.dinosaur.dinosaurexploder.model.LanguageManager;
+import com.dinosaur.dinosaurexploder.utils.GameData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -294,6 +295,9 @@ public class DinosaurController {
             System.out.println("You touched a coin!");
             coinComponent.incrementCoin();
             score.getComponent(ScoreComponent.class).incrementScore(2);
+
+            GameData.addToTotalCoins(1);
+            System.out.println("Total Coins Collected: " + GameData.getTotalCoins());
 
             // Check for bomb regeneration when coin is collected
             if (bomb.hasComponent(BombComponent.class)) {

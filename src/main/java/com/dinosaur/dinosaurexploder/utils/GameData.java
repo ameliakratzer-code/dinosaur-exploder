@@ -15,6 +15,20 @@ public class GameData {
         return selectedShip;
     }
 
+    private static int totalCoins = 0;
+
+    public static int getTotalCoins() {
+        return totalCoins;
+    }
+
+    public static void addToTotalCoins(int coins) {
+        totalCoins += coins;
+    }
+
+    public static void resetTotalCoins() {
+        totalCoins = 0;
+    }
+
     public static void setSelectedShip(int shipNumber) {
         selectedShip = unlockChecker.check(shipNumber);
     }
