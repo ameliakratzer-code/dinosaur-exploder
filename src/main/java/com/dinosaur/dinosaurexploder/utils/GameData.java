@@ -15,7 +15,7 @@ public class GameData {
         return selectedShip;
     }
 
-    private static int totalCoins = 0;
+    private static int totalCoins;
 
     public static int getTotalCoins() {
         return totalCoins;
