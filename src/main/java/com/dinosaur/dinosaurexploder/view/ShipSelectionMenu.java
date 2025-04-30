@@ -10,6 +10,7 @@ import com.dinosaur.dinosaurexploder.model.LanguageManager;
 import com.dinosaur.dinosaurexploder.model.Settings;
 import com.dinosaur.dinosaurexploder.utils.GameData;
 import com.dinosaur.dinosaurexploder.utils.SettingsProvider;
+import com.dinosaur.dinosaurexploder.model.TotalCoins; 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
@@ -27,6 +28,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+
 
 import java.io.InputStream;
 import java.util.Objects;
@@ -80,11 +82,18 @@ public class ShipSelectionMenu extends FXGLMenu {
                 Color.LIME,
                 FontType.MONO, 25);
 
-        //Total coin display
+        // //Total coin display
+        // var totalCoins = FXGL.getUIFactoryService().newText(
+        //         languageManager.getTranslation("total coins") + ": " + GameData.getTotalCoins(),
+        //         Color.LIME,
+        //         FontType.MONO, 25);
+        // Load total coins from the file
+        int totalCoinCount = GameData.getTotalCoins();
+
         var totalCoins = FXGL.getUIFactoryService().newText(
-                languageManager.getTranslation("total coins") + ": " + GameData.getTotalCoins(),
-                Color.LIME,
-                FontType.MONO, 25);
+            languageManager.getTranslation("total coins") + ": " + totalCoinCount,
+            Color.LIME,
+            FontType.MONO, 25);
 
         // GridPane for ships
         GridPane shipGrid = new GridPane();

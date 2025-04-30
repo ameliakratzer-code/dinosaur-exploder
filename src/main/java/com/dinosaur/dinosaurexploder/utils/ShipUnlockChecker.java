@@ -2,6 +2,7 @@ package com.dinosaur.dinosaurexploder.utils;
 
 import com.dinosaur.dinosaurexploder.exception.LockedShipException;
 import com.dinosaur.dinosaurexploder.model.HighScore;
+import com.dinosaur.dinosaurexploder.model.TotalCoins;
 import com.dinosaur.dinosaurexploder.model.LanguageManager;
 
 import java.io.FileInputStream;
@@ -23,6 +24,7 @@ public class ShipUnlockChecker {
             8, 700
     );
     private HighScore highScore = new HighScore();
+    private TotalCoins totalCoins = new TotalCoins(); 
 
     public int check(int shipNumber) {
         highScore = getHighScore();
@@ -44,5 +46,14 @@ public class ShipUnlockChecker {
         if (lowerLimit <= highScore.getHigh()) return;
         throw new LockedShipException(languageManager.getTranslation("ship_locked") + "\n" +
                languageManager.getTranslation("unlock_highScore").replace("##", String.valueOf(lowerLimit)));
+    }
+
+    public TotalCoins getTotalCoins() {
+        try (FileInputStream file = new FileInputStream("totalCoins.ser");
+             ObjectInputStream in = new ObjectInputStream(file)) {
+            return (TotalCoins) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            return new TotalCoins(); 
+        }
     }
 }

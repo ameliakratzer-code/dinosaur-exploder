@@ -296,8 +296,8 @@ public class DinosaurController {
             coinComponent.incrementCoin();
             score.getComponent(ScoreComponent.class).incrementScore(2);
 
-            GameData.addToTotalCoins(1);
-            System.out.println("Total Coins Collected: " + GameData.getTotalCoins());
+            // GameData.addToTotalCoins(1);
+            // System.out.println("Total Coins Collected: " + GameData.getTotalCoins());
 
             // Check for bomb regeneration when coin is collected
             if (bomb.hasComponent(BombComponent.class)) {

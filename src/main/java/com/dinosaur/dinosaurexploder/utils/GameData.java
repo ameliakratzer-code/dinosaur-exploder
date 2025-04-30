@@ -17,17 +17,17 @@ public class GameData {
 
     private static int totalCoins;
 
-    public static int getTotalCoins() {
-        return totalCoins;
-    }
+    // public static int getTotalCoins() {
+    //     return totalCoins;
+    // }
 
-    public static void addToTotalCoins(int coins) {
-        totalCoins += coins;
-    }
+    // public static void addToTotalCoins(int coins) {
+    //     totalCoins += coins;
+    // }
 
-    public static void resetTotalCoins() {
-        totalCoins = 0;
-    }
+    // public static void resetTotalCoins() {
+    //     totalCoins = 0;
+    // }
 
     public static void setSelectedShip(int shipNumber) {
         selectedShip = unlockChecker.check(shipNumber);
@@ -46,5 +46,11 @@ public class GameData {
     public static int getHighScore() {
         highScore = unlockChecker.getHighScore().getHigh();
         return highScore;
+    }
+
+    public static int getTotalCoins() {
+        totalCoins = unlockChecker.getTotalCoins().getTotal();
+        System.out.println("Total: " + totalCoins);
+        return totalCoins;
     }
 }

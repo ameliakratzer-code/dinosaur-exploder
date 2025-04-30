@@ -20,7 +20,7 @@ public class CoinComponent extends Component {
     Integer coin = 0;
     private final Integer COIN_VALUE = 1;
 
-    public static int totalCoins;
+    private static TotalCoins totalCoins = new TotalCoins();
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
 
@@ -55,10 +55,10 @@ public class CoinComponent extends Component {
 
     private void loadCoins() {
         try (FileInputStream file = new FileInputStream("totalCoins.ser");
-             ObjectInputStream in = new ObjectInputStream(file)) {
-            totalCoins = (Integer) in.readObject();
+            ObjectInputStream in = new ObjectInputStream(file)) {
+            totalCoins = (TotalCoins) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            totalCoins = 0;
+            totalCoins = new TotalCoins();
         }
     }
 
@@ -72,13 +72,17 @@ public class CoinComponent extends Component {
 
     }
 
-    private void saveCoinData() {
+    private void saveCoins() {
         try (FileOutputStream file = new FileOutputStream("totalCoins.ser");
-             ObjectOutputStream out = new ObjectOutputStream(file)) {
+            ObjectOutputStream out = new ObjectOutputStream(file)) {
             out.writeObject(totalCoins);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static TotalCoins getTotalCoins() {
+        return totalCoins;
     }
 
     @Override
@@ -105,16 +109,10 @@ public class CoinComponent extends Component {
     //     saveCoinData();
     // }
     public void incrementCoin() {
-        coin += COIN_VALUE;     // Increment the coin count for the player
-        totalCoins += COIN_VALUE;  // Increment the total coins
-        updateText();           // Update the coin display on the UI
-
-        // Save total coins to file after every increment
-        try (FileOutputStream file = new FileOutputStream("totalCoins.ser");
-            ObjectOutputStream out = new ObjectOutputStream(file)) {
-            out.writeObject(totalCoins); // Save the total coins to file
-        } catch (IOException e) {
-            e.printStackTrace();  // Handle errors during saving
-        }
-}
+        coin += 1;
+        totalCoins.setTotal(totalCoins.getTotal() + 1);
+        updateText();
+        saveCoins();
+        // System.out.println("Total: " + totalCoins.getTotal());
+    }
 }
